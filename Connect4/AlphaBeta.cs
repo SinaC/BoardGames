@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reversi
+namespace Connect4
 {
     public class AlphaBeta
     {
@@ -22,7 +22,8 @@ namespace Reversi
             if (beta > max)
             {
                 beta = max;                     // there is no need to keep beta above our max possible score.
-                if (alpha >= beta) return beta;  // prune the exploration if the [alpha;beta] window is empty.
+                if (alpha >= beta)
+                    return beta;  // prune the exploration if the [alpha;beta] window is empty.
             }
 
             for (int x = 0; x < position.Width; x++) // compute the score of all possible next move and keep the best one

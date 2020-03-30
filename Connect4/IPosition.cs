@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reversi
+namespace Connect4
 {
     public interface IPosition
     {
         int Width { get; }
+
         int Height { get; }
 
         int NbMoves { get; }

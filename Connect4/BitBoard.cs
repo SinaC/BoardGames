@@ -1,4 +1,4 @@
-﻿namespace Reversi
+﻿namespace Connect4
 {
     //http://blog.gamesolver.org/solving-connect-four/06-bitboard/
     /** 
@@ -61,6 +61,7 @@
         private int moves; // number of moves played since the beginning of the game
 
         public int Width => width;
+
         public int Height => height;
 
         /**    
