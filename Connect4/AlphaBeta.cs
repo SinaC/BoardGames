@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Connect4
+﻿namespace Connect4
 {
-    public class AlphaBeta
+    public class AlphaBeta : ISolver
     {
-        public int Negamax(IPosition position, int alpha, int beta)
+        public int Solve(IPosition position)
+        {
+            return Negamax(position, -position.Width * position.Height / 2, position.Width * position.Height / 2);
+        }
+
+        private int Negamax(IPosition position, int alpha, int beta)
         {
             if (position.NbMoves == position.Width * position.Height) // check for draw game
                 return 0;

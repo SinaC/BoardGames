@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace Connect4
 {
-    public class MinMax
+    public class MinMax : ISolver
     {
-        public int Negamax(IPosition position)
+        public int Solve(IPosition position)
+        {
+            return Negamax(position);
+        }
+        
+        private int Negamax(IPosition position)
         {
             if (position.NbMoves == position.Width * position.Height) // check for draw game
                 return 0;
@@ -25,7 +30,8 @@ namespace Connect4
                     IPosition newPosition = position.Clone();
                     newPosition.Play(x);               // It's opponent turn in P2 position after current player plays x column.
                     int score = -Negamax(newPosition); // If current player plays col x, his score will be the opposite of opponent's score after playing col x
-                    if (score > bestScore) bestScore = score; // keep track of best possible score so far.
+                    if (score > bestScore)
+                        bestScore = score; // keep track of best possible score so far.
                 }
 
             return bestScore;

@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace Connect4
 {
-    public class AlphaBetaExplorationOrder
+    public class AlphaBetaExplorationOrder : ISolver
     {
-        // TODO: depends on IPosition implementation
-        private int[] columnOrder = new int[7]; // column exploration order
+        private int[] columnOrder; // column exploration order
 
-        public AlphaBetaExplorationOrder()
+        public int Solve(IPosition position)
         {
-            for (int i = 0; i < 7; i++)
-                columnOrder[i] = 7 / 2 + (1 - 2 * (i % 2)) * (i + 1) / 2; // initialize the column exploration order, starting with center columns
+            columnOrder = new int[position.Width];
+            for (int i = 0; i < position.Width; i++)
+                columnOrder[i] = position.Width / 2 + (1 - 2 * (i % 2)) * (i + 1) / 2; // initialize the column exploration order, starting with center columns
+
+            return Negamax(position, -position.Width * position.Height / 2, position.Width * position.Height / 2);
         }
 
         public int Negamax(IPosition position, int alpha, int beta)

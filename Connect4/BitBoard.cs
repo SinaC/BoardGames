@@ -1,4 +1,6 @@
-﻿namespace Connect4
+﻿using System.Text;
+
+namespace Connect4
 {
     //http://blog.gamesolver.org/solving-connect-four/06-bitboard/
     /** 
@@ -48,7 +50,7 @@
 	   *
 	   * key is an unique representation of a board key = position + mask + bottom
 	   * in practice, as bottom is constant, key = position + mask is also a 
-     * non-ambigous representation of the position.
+       * non-ambigous representation of the position.
 	 */
     public class BitBoard : IPosition
     {
@@ -133,6 +135,16 @@
                 mask = mask,
                 moves = moves
             };
+        }
+
+        //
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            ulong board = Key;
+
+            return sb.ToString();
         }
 
         /**    
