@@ -23,6 +23,14 @@ namespace Connect4
         public MainWindow()
         {
             InitializeComponent();
+
+            BitBoard bitBoard = new BitBoard();
+            bitBoard.Play("2252576253462244111563365343671351441".ToCharArray());
+            string displayBitBoard = bitBoard.ToString();
+
+            MatrixBoard matrixBoard = new MatrixBoard();
+            matrixBoard.Play("2252576253462244111563365343671351441".ToCharArray());
+            string displayMatrixBoard = matrixBoard.ToString();
         }
     }
 }

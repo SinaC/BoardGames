@@ -8,7 +8,7 @@ namespace Connect4
      * Functions are relative to the current player to play.
      * Position containing aligment are not supported by this class.
      *
-     * A binary bitboard representationis used.
+     * A binary bitboard representation is used.
      * Each column is encoded on HEIGHT+1 bits.
 	   * 
      * Example of bit order to encode for a 7x6 board
@@ -142,8 +142,26 @@ namespace Connect4
         {
             StringBuilder sb = new StringBuilder();
 
-            ulong board = Key;
-
+            bool isFirstPlayerPlaying = moves % 2 == 0;
+            for (int h = Height-1; h >= 0; h--)
+            {
+                for (int w = 0; w < Width; w++)
+                {
+                    ulong currentCellmask = ulong1 << ((w * Width) + h);
+                    bool isCellEmpty = (mask & currentCellmask) == 0;
+                    if (isCellEmpty)
+                        sb.Append('0');
+                    else
+                    {
+                        bool isCurrentPlayer = (currentPosition & currentCellmask) != 0;
+                        if (isFirstPlayerPlaying == isCurrentPlayer)
+                            sb.Append('1');
+                        else
+                            sb.Append('2');
+                    }
+                }
+                sb.AppendLine();
+            }
             return sb.ToString();
         }
 
